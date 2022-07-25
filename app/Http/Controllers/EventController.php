@@ -141,7 +141,7 @@ class EventController extends Controller
 
         $mailData = array_merge($mailData,$mailData1);  
          
-        $mail_check = Mail::to('molew66293@jrvps.com')->send(new sendAssignPackageMail($mailData));
+        $mail_check = Mail::to($event->customer->email)->send(new sendAssignPackageMail($mailData));
 
         $event->package_offer = Event::WAITING_FOR_RESPONSE;
         $event->save();
@@ -237,8 +237,8 @@ class EventController extends Controller
             ])
         );
 
-        // $data['email'] = $event->customer->email;
-        $data['email'] = 'sobewa7015@teasya.com';
+        $data['email'] = $event->customer->email;
+        // $data['email'] = 'sobewa7015@teasya.com';
         $data['title'] = 'Invoice Details';
         $data['body'] = 'Invoice pdf attach with this email. Please refer this and do further payment process';
 
